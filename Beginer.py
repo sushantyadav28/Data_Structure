@@ -341,32 +341,60 @@
 # print("After sorting", insertionSort(arr))    
 
 
-def mergeSort(arr):
-    if len(arr) > 1:
-        mid = len(arr) // 2
-        L = arr[:mid]
-        R = arr[mid:]
+# def mergeSort(arr):
+#     if len(arr) > 1:
+#         mid = len(arr) // 2
+#         L = arr[:mid]
+#         R = arr[mid:]
 
-        mergeSort(L)
-        mergeSort(R)
+#         mergeSort(L)
+#         mergeSort(R)
 
-        i = j = k = 0
+#         i = j = k = 0
 
-        while i < len(L) and j < len(R):
-            if L[i] < R[j]:
-                arr[k] = L[i]
-                i += 1
-            else:
-                arr[k] = R[j]
-                j += 1
-            k += 1
+#         while i < len(L) and j < len(R):
+#             if L[i] < R[j]:
+#                 arr[k] = L[i]
+#                 i += 1
+#             else:
+#                 arr[k] = R[j]
+#                 j += 1
+#             k += 1
 
-        while i < len(L):
-            arr[k] = L[i]
-            i += 1
-            k += 1
+#         while i < len(L):
+#             arr[k] = L[i]
+#             i += 1
+#             k += 1
 
-        while j < len(R):
-            arr[k] = R[j]
-            j += 1
-            k += 1
+#         while j < len(R):
+#             arr[k] = R[j]
+#             j += 1
+#             k += 1
+
+# ------------------------------------------------------------------------------------------
+
+class Node:
+    def __init__(self, nodeData):
+        self.data = nodeData
+        self.leftChildAddress = None
+        self.rightChildAddress = None
+
+class BinaryTree:
+    def __init__(self):
+        self.root = None
+
+    def buildTree(self):
+        data = input("Enter the data for the node: ")
+        if data == "Quit":
+            return None
+        node = Node(data)
+
+        print("Enter the left child of", data)
+        node.leftChildAddress = self.buildTree()
+
+        print("Enter the right child of", data)
+        node.rightChildAddress = self.buildTree()
+        return node
+    
+bt = BinaryTree()
+bt.buildTree()
